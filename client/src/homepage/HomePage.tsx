@@ -64,7 +64,7 @@ const HomePage = () => {
                     <div className="homepage-box-icon">
                         <img src={homepageboxicon} />
                     </div>
-                    <div className="yi">
+                    <div className="homepage-box-container">
                         <div className="homepage-section-box-content">
                             <h2>Emotions Tracker</h2>
                             <p>Select tags that describe your emotions today(happy, sad, anxious, etc.)

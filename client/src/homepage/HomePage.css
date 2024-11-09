@@ -44,7 +44,7 @@
     cursor: pointer;
 }
 
-.yi {
+.homepage-box-container {
     display: flex;
     flex-direction: column;
 }
