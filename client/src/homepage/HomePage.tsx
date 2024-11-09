@@ -18,7 +18,7 @@ const HomePage = () => {
                     <div className="homepage-box-icon">
                         <img src={homepageboxicon} />
                     </div>
-                    <div className="yi">
+                    <div className="homepage-box-container">
                         <div className="homepage-section-box-content">
                             <h2>Record Your Matrix</h2>
                             <p>Record your fitness metrics to monitor your strengths and track
@@ -32,7 +32,7 @@ const HomePage = () => {
                     <div className="homepage-box-icon">
                         <img src={homepageboxicon} />
                     </div>
-                    <div className="yi">
+                    <div className="homepage-box-container">
                         <div className="homepage-section-box-content">
                             <h2>Daily Challenges</h2>
                             <p>Complete daily challenges to boost your athletic growth and alleviate
@@ -48,7 +48,7 @@ const HomePage = () => {
                     <div className="homepage-box-icon">
                         <img src={homepageboxicon} />
                     </div>
-                    <div className="yi">
+                    <div className="homepage-box-container">
                         <div className="homepage-section-box-content">
                             <h2>Watch Video Demonstrations</h2>
                             <p>View video demonstrations to learn how to perform
