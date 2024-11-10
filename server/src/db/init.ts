@@ -3,7 +3,7 @@ import { open } from 'sqlite';
 
 export async function initializeDatabase() {
   const db = await open({
-    filename: './emotions.db',
+    filename: './database.db',
     driver: Database
   });
 
@@ -24,6 +24,16 @@ export async function initializeDatabase() {
       ('Excited', 'Feeling of great enthusiasm and eagerness'),
       ('Tired', 'Feeling of physical or mental fatigue');
   `);
+  
+  // create user login table
+  await db.exec(`
+    CREATE TABLE IF NOT EXISTS users (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      email TEXT UNIQUE,
+      password TEXT
+    );
+  `);
+
 
   return db;
 } 
