@@ -1,6 +1,8 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import DailyChallenges from './Daily_Challenges/Daily_challenges';
+
 
 function App() {
   return (
@@ -18,9 +20,13 @@ function App() {
         >
           Learn React
         </a>
+        <DailyChallenges/>
       </header>
     </div>
   );
 }
 
 export default App;
+
+
+
