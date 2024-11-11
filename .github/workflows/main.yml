@@ -13,5 +13,7 @@ jobs: # the things being executed
      - uses: actions/checkout@v4 # using version 4 of Actions
      - name: Install Dependencies
        run: npm install
+       working-directory: client
      - name: Unit Test
        run: npm test # the actual testing line
+       working-directory: client
