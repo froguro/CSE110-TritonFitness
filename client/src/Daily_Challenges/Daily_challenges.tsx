@@ -2,18 +2,18 @@ import React, { useState } from 'react';
 import './Daily_challenges.css';
 
 const exerciseList = [
-  '10 Push-ups',
-  '15 Squats',
-  '30-second Plank',
-  '20 Jumping Jacks',
-  '10 Lunges per leg',
-  '30-second Wall Sit',
-  '15 Sit-ups',
+  { name: '10 Push-ups', videoUrl: 'https://www.youtube.com/watch?v=IODxDxX7oi4' },
+  { name: '15 Squats', videoUrl: 'https://www.youtube.com/watch?v=m0GcZ24pK6k' },
+  { name: '30-second Plank', videoUrl: 'https://www.youtube.com/watch?v=yeKv5oX_6GY' },
+  { name: '20 Jumping Jacks', videoUrl: 'https://www.youtube.com/watch?v=q_Z29u7nglQ' },
+  { name: '10 Lunges per leg', videoUrl: 'https://www.youtube.com/watch?v=tTej-ax9XiA' },
+  { name: '30-second Wall Sit', videoUrl: 'https://www.youtube.com/watch?v=eb7vLD6V-iU' },
+  { name: '15 Sit-ups', videoUrl: 'https://www.youtube.com/watch?v=jDwoBqPH0jk' },
 ];
 
 const DailyChallenges = () => {
   const [showChallenge, setShowChallenge] = useState(false);
-  const [dailyChallenges, setDailyChallenges] = useState<string[]>([]);
+  const [dailyChallenges, setDailyChallenges] = useState<{ name: string; videoUrl: string }[]>([]);
 
   const generateNewChallenges = () => {
     const shuffled = [...exerciseList].sort(() => 0.5 - Math.random());
@@ -42,8 +42,14 @@ const DailyChallenges = () => {
             <ul className="daily-challenges-list">
               {dailyChallenges.map((exercise, index) => (
                 <li key={index} className="daily-challenges-item">
-                  <span>{exercise}</span>
+                  <span>{exercise.name}</span>
                   <span className="points">10 points</span>
+                  <button
+                    onClick={() => window.open(exercise.videoUrl, '_blank')}
+                    className="video-button"
+                  >
+                    Watch Video
+                  </button>
                 </li>
               ))}
             </ul>
