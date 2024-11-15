@@ -1,9 +1,9 @@
 .open-modal-button {
-    background-color: #e0e0e0;
-    width: 120px;
-    border-radius: 8px;
-    height: 30px;
-    cursor: pointer;
+  background-color: #e0e0e0;
+  width: 120px;
+  border-radius: 8px;
+  height: 30px;
+  cursor: pointer;
 }
 
 .modal-overlay {
@@ -13,6 +13,7 @@
   right: 0;
   bottom: 0;
   background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px); 
   display: flex;
   justify-content: center;
   align-items: center;
@@ -52,9 +53,9 @@ label {
 }
 
 input {
-  width: 100%;
+  width: 93%;
   padding: 8px;
-  margin-bottom: 4px;
+  margin: 0 4px 4px; /* Adds equal margin to left and right */
   border: 1px solid #ccc;
   border-radius: 4px;
 }
@@ -81,7 +82,7 @@ input {
 
 .sign-in-button {
   padding: 10px;
-  background-color: #000;
+  background: linear-gradient(to right, #00f5d4, #00b4d8);
   color: white;
   border: none;
   border-radius: 4px;
