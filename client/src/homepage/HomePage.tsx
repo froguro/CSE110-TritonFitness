@@ -1,12 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import homepageboxicon from "./homepage-box-icon.svg";
 import threelinedropdown from './three-line-dropdown.svg';
 import profileplaceholder from './profileplaceholder.svg';
-import EmotionsTracker from '../emotionsTrackerFolder/emotionsTracker';
-import DailyChallenges from '../Daily_Challenges/Daily_challenges';
 import './HomePage.css';
 
-const HomePage = () => { 
+const HomePage = () => {
     return (
         <div className="homepage">
             <div className="homepage-header">
@@ -43,7 +41,7 @@ const HomePage = () => {
                                 also be used for recovering a lost streak if you miss a workout.
                             </p>
                         </div>
-                        <DailyChallenges />
+                        <button className="homepage-section-box-button">View Challenges</button>
                     </div>
                 </div>
                 <div className="homepage-box">
@@ -77,7 +75,7 @@ const HomePage = () => {
                         <button className="homepage-section-box-button">Log Emotions</button>
                     </div>
                 </div>
-            </div>       
+            </div>
         </div>
     );
     
