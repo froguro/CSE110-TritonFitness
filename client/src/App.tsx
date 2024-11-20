@@ -6,7 +6,7 @@ import StreakPopup from './StreakPopup/StreakPopup';
 function App() {
   return (
     <div className="App">
-      <StreakPopup />
+      <StreakPopup /> 
     </div>
     
   
