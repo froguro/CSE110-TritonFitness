@@ -1,11 +1,15 @@
 import React from 'react';
 import './App.css';
-import HomePage from './homepage/HomePage';
+//import HomePage from './homepage/HomePage';
+import StreakPopup from './StreakPopup/StreakPopup';
 
 function App() {
   return (
-    <HomePage />
+    <div className="App">
+      <StreakPopup />
+    </div>
     
+  
   );
 }
 

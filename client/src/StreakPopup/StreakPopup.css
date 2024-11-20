@@ -1,0 +1,73 @@
+.popup-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5); /* Dim background */
+  }
+  
+  .popup-content {
+    background-color: white;
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  }
+  
+  .streak-image {
+    width: 150px;
+    height: auto;
+    margin: 0 auto;
+  }
+  
+  .streak-number {
+    font-size: 48px;
+    font-weight: bold;
+    color: #00a300; /* Green color from Figma */
+    margin: 20px 0 10px;
+  }
+  
+  .streak-text {
+    font-size: 24px;
+    color: #00a300;
+    margin: 10px 0 20px;
+  }
+
+  .streak-info {
+    font-size: 20px;
+    color: #007bff;
+    margin: 10px 0 20px;
+  }
+  
+  .streak-button {
+    background-color: #007bff; /* Blue button */
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 10px;
+  }
+  
+  .streak-button:hover {
+    background-color: #0056b3; /* Darker blue */
+  }
+  
+  .continue-link {
+    display: block;
+    font-size: 14px;
+    color: #007bff;
+    text-decoration: none;
+    margin-top: 10px;
+  }
+  
+  .continue-link:hover {
+    text-decoration: underline;
+  }
