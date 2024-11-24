@@ -1,13 +1,15 @@
 import React from 'react';
 import './App.css';
-import EmotionTracker from './emotionsTrackerFolder/emotionsTracker';
+import HomePage from './homepage/HomePage';
 
 function App() {
   return (
-    <div className="App">
-      <EmotionTracker />
-    </div>
+    <HomePage />
+    
   );
 }
 
 export default App;
+
+
+

@@ -1,0 +1,70 @@
+.daily-challenges-container {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .daily-challenges-button {
+    width: 150px;
+    height: 40px;
+    margin: 10px;
+    padding: 0;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .daily-challenges-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .daily-challenges-popup {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+  }
+  
+  .daily-challenges-list {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+    padding-left: 20px;
+  }
+  
+  .daily-challenges-item {
+    margin-bottom: 10px;
+    color: black;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .daily-challenges-item span.points {
+    font-size: 0.8em;
+  }
+  
+  .daily-challenges-close-button {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
