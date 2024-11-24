@@ -59,7 +59,7 @@ const HomePage = () => {
                                 provide feedback on videos, like or dislike videos, and share/save videos.
                             </p>
                         </div>
-                        <button className="homepage-section-box-button">Watch Now</button>
+                            <button className="homepage-section-box-button">Watch Now</button>
                     </div>
                 </div>
                 <div className="homepage-box">
