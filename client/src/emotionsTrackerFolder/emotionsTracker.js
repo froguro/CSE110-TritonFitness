@@ -8,6 +8,7 @@ const emotionsList = [
 
 const EmotionTracker = () => {
   const [selectedEmotions, setSelectedEmotions] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const toggleEmotion = (emotion) => {
     if (selectedEmotions.includes(emotion)) {
@@ -20,26 +21,46 @@ const EmotionTracker = () => {
   const handleSubmit = () => {
     // This can be connected to the backend when your partner's work is done
     console.log('Emotions submitted:', selectedEmotions);
+    setIsModalOpen(false);
+  };
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
   };
 
   return (
-    <div className="emotion-tracker">
-      <h2>Emotion Tracker</h2>
-      <p>How are you feeling? Select all that you have felt today</p>
-      <div className="emotions-container">
-        {emotionsList.map(emotion => (
-          <button
-            key={emotion}
-            className={`emotion-button ${selectedEmotions.includes(emotion) ? 'selected' : ''}`}
-            onClick={() => toggleEmotion(emotion)}
-          >
-            {emotion}
-          </button>
-        ))}
-      </div>
-      <button className="submit-button" onClick={handleSubmit}>
-        Submit
+
+    <div className="emotion-tracker-page">
+      <button className="track-emotions-button" onClick={openModal}>
+        Track Emotions
       </button>
+
+      {isModalOpen &&( 
+      <div className = "overlay">
+        <div className="emotion-tracker">
+          <h2>Emotion Tracker</h2>
+          <p>How are you feeling? Select all that you have felt today</p>
+          <div className="emotions-container">
+            {emotionsList.map(emotion => (
+              <button
+                key={emotion}
+                className={`emotion-button ${selectedEmotions.includes(emotion) ? 'selected' : ''}`}
+                onClick={() => toggleEmotion(emotion)}
+                >
+                  {emotion}
+                </button>
+              ))}
+            </div>
+            <button className="submit-button" onClick={handleSubmit}>
+              Submit
+            </button>
+        </div>
+      </div>
+      )}
     </div>
   );
 };

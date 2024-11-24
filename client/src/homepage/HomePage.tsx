@@ -2,17 +2,35 @@ import React, { useState } from 'react';
 import homepageboxicon from "./homepage-box-icon.svg";
 import threelinedropdown from './three-line-dropdown.svg';
 import profileplaceholder from './profileplaceholder.svg';
+import LoginPopUp from '../LoginPopUpFolder/LoginPopUp';
+import { User } from '../types/user';
 import EmotionsTracker from '../emotionsTrackerFolder/emotionsTracker';
 import DailyChallenges from '../Daily_Challenges/Daily_challenges';
 import './HomePage.css';
 
+interface HomePageProps {
+  user: User | null;
+  onSignIn: (userData: User) => void;
+}
+
+const HomePage: React.FC<HomePageProps> = ({ user, onSignIn }) => {
 const HomePage = () => { 
     return (
         <div className="homepage">
             <div className="homepage-header">
-                <img src={threelinedropdown} /> 
+                <img src={threelinedropdown} alt="menu" /> 
                 <h1>Home</h1>
-                <img src={profileplaceholder} />
+                <div className="profile-section">
+                    {user ? (
+                        <img 
+                            src={user.picture || profileplaceholder} 
+                            alt={user.name} 
+                            className="profile-image"
+                        />
+                    ) : (
+                        <LoginPopUp onSignIn={onSignIn} />
+                    )}
+                </div>
             </div>
             <div className="homepage-horizontal-line"></div>
             <div className="homepage-section-list">
