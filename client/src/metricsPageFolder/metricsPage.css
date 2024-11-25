@@ -5,6 +5,7 @@
     padding: 20px;
     font-family: Arial, sans-serif;
     text-align: left;
+    background-color: #f0f0f0;
   }
   
   h1 {
@@ -49,4 +50,48 @@
   .submit-button:hover {
     background-color: #555;
   }
+
+  .metrics-page .open-modal-button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255); /* Make background more opaque */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Overlay is above everything */
+}
+
+.modal {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    text-align: center;
+}
+
+.modal .close-modal-button {
+    margin-top: 20px;
+    padding: 5px 10px;
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
   
+body.modal-open {
+  overflow: hidden; /* Prevent scrolling when the modal is open */
+}
