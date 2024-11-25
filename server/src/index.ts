@@ -126,6 +126,37 @@ app.post('/api/google-login', async (req, res) => {
   }
 });
 
+app.post('api/recommend-exercises', async (req, res) => {
+  const { level, muscleGroup, exerciseType, equipment } = req.body;
+
+  try {
+    // Build the query with scoring, selecting 3 random exercises from top 10 queried 
+    let query = `
+      SELECT * FROM (
+        SELECT *,
+          (CASE WHEN primaryMuscles LIKE ? THEN 3 ELSE 0 END) + 
+          (CASE WHEN level = ? THEN 2 ELSE 0 END) +
+          (CASE WHEN category = ? THEN 1 ELSE 0 END) AS score
+        FROM exercises
+        WHERE equipment = ?
+        ORDER BY score DESC
+        LIMIT 10
+      ) AS filtered
+      ORDER BY RANDOM()
+      LIMIT 3;
+    `;
+
+    const params = [`%${muscleGroup}%`, level, exerciseType, equipment];
+    const exercises = await db.all(query, params);
+
+    res.json({ exercises });
+  } catch (error) {
+    console.error('Error fetching exercises:', error);
+    res.status(500).json({ error: 'Failed to fetch exercises' });
+  }
+});
+
+
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 }); 
