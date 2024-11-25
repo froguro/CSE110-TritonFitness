@@ -31,7 +31,6 @@ const SignUp = () => {
                 <div className="signup-input-group">
                     <div className="signup-password-group">
                         <label htmlFor="password">Password</label>
-                        <div className="signup-forgot-password">Forgot Password?</div>
                     </div>
                     <div className="password-input-container">
                         <input
