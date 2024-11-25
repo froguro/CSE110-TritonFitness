@@ -64,12 +64,12 @@
     cursor: pointer;
 }
 
-.homepage-profile-section {
+.profile-section {
   display: flex;
   align-items: center;
 }
 
-.homepage-profile-image {
+.profile-image {
   width: 40px;
   height: 40px;
   border-radius: 50%;
