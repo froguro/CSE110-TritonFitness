@@ -76,3 +76,7 @@
   object-fit: cover;
   cursor: pointer;
 }
+
+.homepage {
+    overflow: auto;
+}

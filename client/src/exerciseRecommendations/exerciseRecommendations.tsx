@@ -67,7 +67,7 @@ const ExerciseRecommendations = () => {
   return (
     <div className="exercise-popup">
       <button className="recommendation-button" onClick={openModal}>
-        Get Exercise Recommendations
+        Recommend
       </button>
 
       {isModalOpen && (
