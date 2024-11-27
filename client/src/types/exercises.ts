@@ -14,8 +14,7 @@ export enum Muscle {
     lower_back = "lower back",
     traps = "traps",
     middle_back = "middle back",
-    lats = "lats",
-    neck = "neck",
+    lats = "lats"
   }
   
   export enum Level {

@@ -46,6 +46,15 @@ const ExerciseRecommendations = () => {
       }
 
       const result = await response.json();
+
+        // Check if no exercises were returned
+        if (result.exercises.length === 0) {
+            setError("No matching exercises found for the desired criteria.");
+            setRecommendations([]);
+        } else {
+            setRecommendations(result.exercises);
+        }
+
       setRecommendations(result.exercises);
     } catch (err: any) {
       console.error("Error fetching recommendations:", err);
