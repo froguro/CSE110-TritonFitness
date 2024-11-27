@@ -5,6 +5,7 @@ import profileplaceholder from './profileplaceholder.svg';
 import LoginPopUp from '../LoginPopUpFolder/LoginPopUp';
 import { User } from '../types/user';
 import './HomePage.css';
+import ExerciseRecommendations from '../exerciseRecommendations/exerciseRecommendations';
 
 interface HomePageProps {
   user: User | null;
@@ -90,6 +91,19 @@ const HomePage: React.FC<HomePageProps> = ({ user, onSignIn }) => {
                             </p>
                         </div>
                         <button className="homepage-section-box-button">Log Emotions</button>
+                    </div>
+                </div>
+                <div className="homepage-box">
+                    <div className="homepage-box-icon">
+                        <img src={homepageboxicon} />
+                    </div>
+                    <div className="homepage-box-container">
+                        <div className="homepage-section-box-content">
+                            <h2>Exercise Recommendations</h2>
+                            <p>Description. Lorem ipsum odor amet, consectetuer adipiscing elit. 
+                            </p>
+                        </div>
+                        <ExerciseRecommendations />
                     </div>
                 </div>
             </div>

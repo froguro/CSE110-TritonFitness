@@ -100,3 +100,15 @@
     overflow: hidden; /* Prevent scrolling on the page when modal is open */
   }
   
+  .recommendation-button {
+    background-color: #e0e0e0;
+    width: 120px;
+    border-radius: 8px;
+    height: 30px;
+    cursor: pointer;
+    
+}
+
+.exercise-popup {
+  display: flex;
+}
