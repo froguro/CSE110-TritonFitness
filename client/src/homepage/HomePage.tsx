@@ -8,6 +8,7 @@ import { User } from '../types/user';
 import './HomePage.css';
 import DailyChallenges from '../Daily_Challenges/Daily_challenges';
 import EmotionTracker from '../emotionsTrackerFolder/emotionsTracker';
+import ExerciseRecommendations from '../exerciseRecommendations/exerciseRecommendations';
 
 interface HomePageProps {
   user: User | null;
@@ -95,6 +96,19 @@ const HomePage: React.FC<HomePageProps> = ({ user, onSignIn }) => {
                             </p>
                         </div>
                         <EmotionTracker />
+                    </div>
+                </div>
+                <div className="homepage-box">
+                    <div className="homepage-box-icon">
+                        <img src={homepageboxicon} />
+                    </div>
+                    <div className="homepage-box-container">
+                        <div className="homepage-section-box-content">
+                            <h2>Exercise Recommendations</h2>
+                            <p>Description. Lorem ipsum odor amet, consectetuer adipiscing elit. 
+                            </p>
+                        </div>
+                        <ExerciseRecommendations />
                     </div>
                 </div>
             </div>
