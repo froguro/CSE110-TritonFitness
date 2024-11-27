@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import './App.css';
 import HomePage from './homepage/HomePage';
+import VideoDemonstrations from './VideoDemonstrations/VideoDemonstrations';
 import { User } from './types/user';
 
 const GOOGLE_CLIENT_ID = process.env.REACT_APP_GOOGLE_CLIENT_ID!;
@@ -15,14 +17,20 @@ function App() {
 
   return (
     <GoogleOAuthProvider clientId={GOOGLE_CLIENT_ID}>
-      <div className="App">
-        <HomePage user={user} onSignIn={handleSignIn} />
-      </div>
+      <Router>
+        <Routes>
+          <Route 
+            path="/" 
+            element={<HomePage user={user} onSignIn={handleSignIn} />} 
+          />
+          <Route 
+            path="/video-demonstrations" 
+            element={<VideoDemonstrations />} 
+          />
+        </Routes>
+      </Router>
     </GoogleOAuthProvider>
   );
 }
 
 export default App;
-
-
-
