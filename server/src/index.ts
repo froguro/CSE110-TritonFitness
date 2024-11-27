@@ -126,7 +126,7 @@ app.post('/api/google-login', async (req, res) => {
   }
 });
 
-app.post('api/recommend-exercises', async (req, res) => {
+app.post('/api/recommend-exercises', async (req, res) => {
   const { level, muscleGroup, exerciseType, equipment } = req.body;
 
   try {
