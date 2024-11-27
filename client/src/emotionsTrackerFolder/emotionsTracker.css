@@ -5,6 +5,8 @@
     border-radius: 10px;
     width: 80%;
     margin: auto;
+    max-width: 500px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   }
   
   h2 {
@@ -57,3 +59,26 @@
     background-color: #555;
   }
   
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+
+  .track-emotions-button {
+    padding: 15px 30px;
+    font-size: 18px;
+    border: none;
+    border-radius: 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }

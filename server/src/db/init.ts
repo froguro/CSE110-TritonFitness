@@ -30,7 +30,10 @@ export async function initializeDatabase() {
     CREATE TABLE IF NOT EXISTS users (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       email TEXT UNIQUE,
-      password TEXT
+      password TEXT,
+      google_id TEXT UNIQUE,
+      name TEXT,
+      picture TEXT
     );
   `);
 

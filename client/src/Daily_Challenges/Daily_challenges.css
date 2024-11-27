@@ -1,21 +1,18 @@
 .daily-challenges-container {
-    text-align: center;
-    margin-top: 20px;
+    margin-top: 5px;
   }
   
   .daily-challenges-button {
-    width: 150px;
-    height: 40px;
-    margin: 10px;
-    padding: 0;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
+    background-color: #e0e0e0;
+    width: 120px;
+    border-radius: 8px;
+    height: 30px;
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    transition: background-color 0.3s ease;
+  }
+
+  .daily-challenges-button:hover {
+    background-color: #d5d5d5;
   }
   
   .daily-challenges-overlay {
@@ -25,6 +22,7 @@
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px); 
     display: flex;
     justify-content: center;
     align-items: center;
@@ -32,12 +30,13 @@
   }
   
   .daily-challenges-popup {
-    background-color: white;
-    padding: 20px;
-    border-radius: 5px;
-    max-width: 400px;
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 15px;
+    max-width: 450px;
     width: 90%;
     text-align: center;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); 
   }
   
   .daily-challenges-list {
@@ -52,19 +51,48 @@
     color: black;
     display: flex;
     justify-content: space-between;
+    align-items: center;
   }
   
   .daily-challenges-item span.points {
     font-size: 0.8em;
+    margin-left: auto;
+    margin-right: 20px;
   }
   
   .daily-challenges-close-button {
-    margin-top: 10px;
-    padding: 10px;
-    background-color: #007bff;
+    background-color: #ff5f5f;
     color: white;
-    border: none;
-    border-radius: 5px;
+    width: 130px;
+    border-radius: 8px;
+    height: 35px;
     cursor: pointer;
+    font-weight: bold;
+    border: none;
+    transition: background-color 0.3s ease;
+  }
+
+  .daily-challenges-close-button:hover {
+    background-color: #ff2e2e;
   }
   
+  .video-button {
+    background: linear-gradient(to right, #00f5d4, #00b4d8);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .video-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(0, 255, 212, 0.4);
+  }
+  
+  .video-button:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 8px rgba(0, 180, 216, 0.4);
+  }
