@@ -94,6 +94,26 @@ export async function initializeDatabase() {
   }
 
   console.log('Emotions, users, and exercises tables have been initialized and populated.');
+  
+  try {
+    await db.exec(`
+      CREATE TABLE IF NOT EXISTS metrics (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        userId TEXT NOT NULL,
+        weight REAL NOT NULL,
+        shoulders REAL,
+        chest REAL,
+        waist REAL,
+        glutes REAL,
+        rightThigh REAL,
+        leftThigh REAL,
+        date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      );
+    `);
+    console.log('Metrics table created successfully.');
+  } catch (error) {
+    console.error('Error creating metrics table:');
+  }
 
 
   return db;

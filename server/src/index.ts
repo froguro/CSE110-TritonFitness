@@ -167,6 +167,33 @@ app.post('/api/recommend-exercises', async (req, res) => {
   }
 });
 
+app.post('/metrics', async (req, res) => {
+  console.log('Received data:', req.body); // Log incoming data
+
+  const { userId, weight, shoulders, chest, waist, glutes, rightThigh, leftThigh } = req.body;
+
+  try {
+    const result = await db.run(
+      `INSERT INTO metrics (userId, weight, shoulders, chest, waist, glutes, rightThigh, leftThigh)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+      [userId, weight, shoulders, chest, waist, glutes, rightThigh, leftThigh]
+    );
+    res.status(201).json({ id: result.lastID, message: 'Metrics saved successfully' });
+  } catch (err) {
+    console.error('Database error:', err); // Log SQL error
+    res.status(500).json({ error: 'Failed to save metrics' });
+  }
+});
+
+
+app.get('/metrics', async (req, res) => {
+  try {
+    const metrics = await db.all(`SELECT * FROM metrics`);
+    res.status(204).json(metrics);
+  } catch (err) {
+    res.status(500).json({ error: "Failed to Track Metrics" });
+  }
+});
 
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);

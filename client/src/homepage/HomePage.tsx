@@ -9,6 +9,7 @@ import './HomePage.css';
 import DailyChallenges from '../Daily_Challenges/Daily_challenges';
 import EmotionTracker from '../emotionsTrackerFolder/emotionsTracker';
 import ExerciseRecommendations from '../exerciseRecommendations/exerciseRecommendations';
+import MetricsPage from '../metricsPage/metricsPage';
 
 interface HomePageProps {
   user: User | null;
@@ -46,7 +47,7 @@ const HomePage: React.FC<HomePageProps> = ({ user, onSignIn }) => {
                                 the progression of your physical abilities.
                             </p>
                         </div>
-                        <button className="homepage-section-box-button">Record Now</button>
+                        <MetricsPage />
                     </div>
                 </div>
                 <div className="homepage-box">
