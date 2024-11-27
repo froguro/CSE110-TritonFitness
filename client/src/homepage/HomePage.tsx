@@ -1,18 +1,36 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import homepageboxicon from "./homepage-box-icon.svg";
 import threelinedropdown from './three-line-dropdown.svg';
 import profileplaceholder from './profileplaceholder.svg';
-import EmotionsTracker from '../emotionsTrackerFolder/emotionsTracker';
-import DailyChallenges from '../Daily_Challenges/Daily_challenges';
+import LoginPopUp from '../LoginPopUpFolder/LoginPopUp';
+import { User } from '../types/user';
 import './HomePage.css';
+import DailyChallenges from '../Daily_Challenges/Daily_challenges';
+import EmotionTracker from '../emotionsTrackerFolder/emotionsTracker';
 
-const HomePage = () => { 
+interface HomePageProps {
+  user: User | null;
+  onSignIn: (userData: User) => void;
+}
+
+const HomePage: React.FC<HomePageProps> = ({ user, onSignIn }) => {
     return (
         <div className="homepage">
             <div className="homepage-header">
-                <img src={threelinedropdown} /> 
+                <img src={threelinedropdown} alt="menu" /> 
                 <h1>Home</h1>
-                <img src={profileplaceholder} />
+                <div className="homepage-profile-section">
+                    {user ? (
+                        <img 
+                            src={user.picture || profileplaceholder} 
+                            alt={user.name} 
+                            className="homepage-profile-image"
+                        />
+                    ) : (
+                        <LoginPopUp onSignIn={onSignIn} />
+                    )}
+                </div>
             </div>
             <div className="homepage-horizontal-line"></div>
             <div className="homepage-section-list">
@@ -59,7 +77,9 @@ const HomePage = () => {
                                 provide feedback on videos, like or dislike videos, and share/save videos.
                             </p>
                         </div>
-                        <button className="homepage-section-box-button">Watch Now</button>
+                        <Link to="/video-demonstrations">
+                            <button className="homepage-section-box-button">Watch Now</button>
+                        </Link>
                     </div>
                 </div>
                 <div className="homepage-box">
@@ -74,10 +94,10 @@ const HomePage = () => {
                                 can view the history of your mood patterns. 
                             </p>
                         </div>
-                        <button className="homepage-section-box-button">Log Emotions</button>
+                        <EmotionTracker />
                     </div>
                 </div>
-            </div>       
+            </div>
         </div>
     );
     
