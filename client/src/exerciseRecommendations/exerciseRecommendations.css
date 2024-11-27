@@ -1,0 +1,102 @@
+.exercise-container {
+    width: 100%;
+    max-width: 600px;
+    max-height: 80%; /* Limit height to 80% of the viewport */
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    text-align: left;
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    overflow-y: auto; /* Enable vertical scrolling */
+  }
+  
+  h1, h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .exercise-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .input-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  label {
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  
+  input,
+  select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .submit-button {
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .submit-button:disabled {
+    background-color: #aaa;
+  }
+  
+  .error-message {
+    color: red;
+    font-weight: bold;
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .recommendations {
+    margin-top: 20px;
+  }
+  
+  .recommendations ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .recommendations li {
+    margin-bottom: 15px;
+  }
+  
+  .close-button {
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.9); /* Slight transparency */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  body.modal-open {
+    overflow: hidden; /* Prevent scrolling on the page when modal is open */
+  }
+  
