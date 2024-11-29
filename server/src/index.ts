@@ -42,18 +42,35 @@ app.get('/api/emotions', async (req, res) => {
 
 // User registration route
 app.post('/api/register', async (req, res) => {
-  const { email, password } = req.body;
+  const { email, password, name } = req.body;
 
   try {
-    const hashedPassword = await bcrypt.hash(password, 10);
-    await db.run('INSERT INTO users (email, password) VALUES (?, ?)', [email, hashedPassword]);
-    res.status(201).json({ message: 'User registered successfully' });
-  } catch (error) {
-    if ((error as any).code === 'SQLITE_CONSTRAINT') {
-      res.status(400).json({ error: 'User already exists' });
-    } else {
-      res.status(500).json({ error: 'Failed to register user' });
+    // Check if user already exists
+    const existingUser = await db.get('SELECT * FROM users WHERE email = ?', [email]);
+    if (existingUser) {
+      return res.status(400).json({ error: 'Email already registered' });
     }
+
+    // Hash password
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Insert new user
+    const result = await db.run(
+      'INSERT INTO users (email, password, name) VALUES (?, ?, ?)',
+      [email, hashedPassword, name || email.split('@')[0]]
+    );
+
+    res.status(201).json({
+      message: 'User registered successfully',
+      userId: result.lastID
+    });
+
+  } catch (error) {
+    console.error('Registration error:', error);
+    res.status(500).json({ 
+      error: 'Failed to register user',
+      details: error instanceof Error ? error.message : 'Unknown error'
+    });
   }
 });
 
@@ -62,23 +79,38 @@ app.post('/api/login', async (req, res) => {
   const { email, password } = req.body;
 
   try {
+    // First check if user exists
     const user = await db.get('SELECT * FROM users WHERE email = ?', [email]);
 
     if (!user) {
       return res.status(401).json({ error: 'User not found' });
     }
-    const isPasswordCorrect = await bcrypt.compare(password, user.password);
 
-    if (!isPasswordCorrect) {
-      return res.status(401).json({ error: 'Incorrect password' });
+    // If user exists but has no password (Google user), reject password login
+    if (!user.password) {
+      return res.status(401).json({ error: 'Please use Google login for this account' });
     }
-    // Respond with success and the user's ID
-    res.json({ 
-      message: 'Login successful', 
-      userId: user.id // Can be stored into front-end
+
+    // Verify password
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if (!isPasswordValid) {
+      return res.status(401).json({ error: 'Invalid password' });
+    }
+
+    // Return user data
+    res.json({
+      userId: user.id,
+      email: user.email,
+      name: user.name,
+      picture: user.picture
     });
+
   } catch (error) {
-    res.status(500).json({ error: 'An error occurred during login' });
+    console.error('Login error:', error);
+    res.status(500).json({ 
+      error: 'An error occurred during login',
+      details: error instanceof Error ? error.message : 'Unknown error'
+    });
   }
 });
 

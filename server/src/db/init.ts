@@ -31,11 +31,12 @@ export async function initializeDatabase() {
   await db.exec(`
     CREATE TABLE IF NOT EXISTS users (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
-      email TEXT UNIQUE,
+      email TEXT UNIQUE NOT NULL,
       password TEXT,
       google_id TEXT UNIQUE,
       name TEXT,
-      picture TEXT
+      picture TEXT,
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP
     );
   `);
 

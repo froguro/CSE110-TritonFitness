@@ -5,6 +5,7 @@ import './App.css';
 import HomePage from './homepage/HomePage';
 import VideoDemonstrations from './VideoDemonstrations/VideoDemonstrations';
 import { User } from './types/user';
+import SignUp from './SignUp/SignUp';
 
 const GOOGLE_CLIENT_ID = process.env.REACT_APP_GOOGLE_CLIENT_ID!;
 
@@ -26,6 +27,10 @@ function App() {
           <Route 
             path="/video-demonstrations" 
             element={<VideoDemonstrations />} 
+          />
+          <Route 
+            path="/signup" 
+            element={<SignUp />} 
           />
         </Routes>
       </Router>
