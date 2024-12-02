@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { GoogleLogin } from '@react-oauth/google';
 import { jwtDecode } from 'jwt-decode';
 import { User } from '../types/user';
+import { Link } from 'react-router-dom';
 import './LoginPopUp.css';
 
 interface LoginPopUpProps {
@@ -129,7 +130,7 @@ const LoginPopUp: React.FC<LoginPopUpProps> = ({ onSignIn }) => {
                 </div>
               </div>
               <div className="forgot-link">
-                <a href="/forgot">Forgot?</a>
+                <Link to="/forgot-password">Forgot Password?</Link>
               </div>
               <button type="submit" className="sign-in-button">Sign In</button>
               <div className="google-signin-container">

@@ -4,8 +4,14 @@
   },
   "dependencies": {
     "@react-oauth/google": "^0.12.1",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "google-auth-library": "^9.15.0",
     "jwt-decode": "^4.0.0",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^7.0.1"
   }
 }
