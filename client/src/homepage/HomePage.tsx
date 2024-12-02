@@ -1,10 +1,38 @@
-import React from 'react';
+import React, { useState } from 'react';
 import homepageboxicon from "./homepage-box-icon.svg";
 import threelinedropdown from './three-line-dropdown.svg';
 import profileplaceholder from './profileplaceholder.svg';
 import './HomePage.css';
 
-const HomePage = () => {
+const emotionsList: string[] = [
+  'Sad', 'Happy', 'Irritated', 'Angry', 'Sleepy', 'Anxious',
+  'Calm', 'Disgust', 'Fearful', 'Motivated', 'Lazy'
+];
+
+const HomePage: React.FC = () => {
+  const [selectedEmotions, setSelectedEmotions] = useState<string[]>([]);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+
+  const toggleEmotion = (emotion: string) => {
+    if (selectedEmotions.includes(emotion)) {
+      setSelectedEmotions(selectedEmotions.filter(e => e !== emotion));
+    } else {
+      setSelectedEmotions([...selectedEmotions, emotion]);
+    }
+  };
+
+  const handleSubmit = () => {
+    console.log('Emotions submitted:', selectedEmotions);
+    setIsModalOpen(false);
+    setShowSuccessMessage(true);
+    setTimeout(() => setShowSuccessMessage(false), 3000);
+  };
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
     return (
         <div className="homepage">
             <div className="homepage-header">
@@ -72,10 +100,38 @@ const HomePage = () => {
                                 can view the history of your mood patterns. 
                             </p>
                         </div>
-                        <button className="homepage-section-box-button">Log Emotions</button>
+                        <button className="homepage-section-box-button" onClick={openModal}>Log Emotions</button>
                     </div>
                 </div>
             </div>
+            {/* Modal for Emotion Tracker */}
+            {isModalOpen && (
+                <div className="overlay">
+                <div className="emotion-tracker">
+                    <h2>Emotion Tracker</h2>
+                    <p>How are you feeling? Select all that you have felt today</p>
+                    <div className="emotions-container">
+                    {emotionsList.map(emotion => (
+                        <button
+                        key={emotion}
+                        className={`emotion-button ${selectedEmotions.includes(emotion) ? 'selected' : ''}`}
+                        onClick={() => toggleEmotion(emotion)}
+                        >
+                        {emotion}
+                        </button>
+                    ))}
+                    </div>
+                    <button className="submit-button" onClick={handleSubmit}>
+                    Submit
+                    </button>
+                </div>
+                </div>
+            )}
+            {showSuccessMessage && (
+                <div className="success-message">
+                    Emotions successfully submitted!
+                </div>
+      )}
         </div>
     );
     
