@@ -1,6 +1,4 @@
-.homepage-header {
-    margin-top: 150px; 
-}
+
 
 .homepage-header {
     display: flex;
@@ -83,4 +81,15 @@
 
 .homepage {
     overflow: auto;
+}
+
+.profile-page-button{
+    border-radius: 8px;
+    cursor: pointer;
+    margin-left: 10px;
+    padding: 5px;
+}
+
+.homepage-profile-image {
+    border: 2px solid black;
 }

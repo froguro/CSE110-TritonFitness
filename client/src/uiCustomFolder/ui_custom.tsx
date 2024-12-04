@@ -48,9 +48,8 @@ const UICustomPopup: React.FC<UICustomPopupProps> = ({
       <button
         onClick={openPopup}
         className="open-popup-button"
-        style={{ position: 'absolute', right: '45.2%' }}
       >
-        Open UI Customization
+        ✏️ UI Customization
       </button>
 
       {isPopupOpen && (
@@ -58,7 +57,6 @@ const UICustomPopup: React.FC<UICustomPopupProps> = ({
           <div className="ui-custom-popup-content">
             <h2>Customize Your UI</h2>
 
-            {/* Body Background Color */}
             <div className="customization-option">
               <label htmlFor="body-background-color">Body Background Color:</label>
               <input
@@ -69,7 +67,6 @@ const UICustomPopup: React.FC<UICustomPopupProps> = ({
               />
             </div>
 
-            {/* Box Background Color */}
             <div className="customization-option">
               <label htmlFor="box-background-color">Box Background Color:</label>
               <input
@@ -80,7 +77,6 @@ const UICustomPopup: React.FC<UICustomPopupProps> = ({
               />
             </div>
 
-            {/* Button Background Color */}
             <div className="customization-option">
               <label htmlFor="button-background-color">Button Background Color:</label>
               <input
@@ -91,7 +87,6 @@ const UICustomPopup: React.FC<UICustomPopupProps> = ({
               />
             </div>
 
-            {/* Popup Buttons */}
             <div className="popup-buttons">
               <button className="apply-button" onClick={applyChanges}>
                 Apply Changes

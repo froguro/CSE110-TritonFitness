@@ -7,6 +7,7 @@ import VideoDemonstrations from './VideoDemonstrations/VideoDemonstrations';
 import { User } from './types/user';
 import SignUp from './SignUp/SignUp';
 import UICustomPopup from './uiCustomFolder/ui_custom';
+import Profile from './profileFolder/profile';
 
 const GOOGLE_CLIENT_ID = process.env.REACT_APP_GOOGLE_CLIENT_ID!;
 
@@ -52,18 +53,12 @@ function App() {
           <Route 
             path="/" 
             element={
-            <div>
               <HomePage user={user} onSignIn={handleSignIn}
                 backgroundColor={bodyBackgroundColor}
                 boxBackgroundColor={boxBackgroundColor}
                 buttonBackgroundColor={buttonBackgroundColor}
               />
-              <UICustomPopup
-                onChangeBackgroundColor={setBodyBackgroundColor}
-                onChangeBoxBackgroundColor={setBoxBackgroundColor}
-                onChangeButtonBackgroundColor={setButtonBackgroundColor}
-              />
-            </div>} 
+            } 
           />
           <Route 
             path="/video-demonstrations" 
@@ -73,8 +68,17 @@ function App() {
             path="/signup" 
             element={<SignUp />} 
           />
+          <Route
+            path="/profile" 
+            element={
+              <Profile user={user} backgroundColor={bodyBackgroundColor}
+                onChangeBackgroundColor={handleBackgroundColorChange}
+                onChangeBoxBackgroundColor={handleBoxColorChange}
+                onChangeButtonBackgroundColor={handleButtonColorChange}
+              />
+            }
+          />
         </Routes>
-
       </Router>
     </GoogleOAuthProvider>
   );

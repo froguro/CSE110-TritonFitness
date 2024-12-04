@@ -14,9 +14,9 @@ import MetricsPage from '../metricsPage/metricsPage';
 interface HomePageProps {
   user: User | null;
   onSignIn: (userData: User) => void;
-  backgroundColor: string; // Dynamic body background color
-  boxBackgroundColor: string; // Dynamic box background color
-  buttonBackgroundColor: string; // Dynamic button background color
+  backgroundColor: string;
+  boxBackgroundColor: string;
+  buttonBackgroundColor: string;
 }
 
 const HomePage: React.FC<HomePageProps> = ({ 
@@ -36,10 +36,17 @@ const HomePage: React.FC<HomePageProps> = ({
                     ) : (
                         <LoginPopUp onSignIn={onSignIn} buttonBackgroundColor={buttonBackgroundColor}/>
                     )}
+                    <Link to="/profile">
+                    <button 
+                        className="profile-page-button" 
+                        style={{ backgroundColor: buttonBackgroundColor }}
+                        >Profile Page</button>
+          </Link>
                 </div>
             </div>
             <div className="homepage-horizontal-line"></div>
             <div className="homepage-section-list">
+                
                 <div className="homepage-box" style={{ backgroundColor: boxBackgroundColor }}>
                     <div className="homepage-box-icon">
                         <img src={homepageboxicon} />
@@ -89,6 +96,7 @@ const HomePage: React.FC<HomePageProps> = ({
                         </Link>
                     </div>
                 </div>
+
                 <div className="homepage-box" style={{ backgroundColor: boxBackgroundColor }}>
                     <div className="homepage-box-icon">
                         <img src={homepageboxicon} />
@@ -104,6 +112,7 @@ const HomePage: React.FC<HomePageProps> = ({
                         <EmotionTracker buttonBackgroundColor={buttonBackgroundColor} />
                     </div>
                 </div>
+                
                 <div className="homepage-box" style={{ backgroundColor: boxBackgroundColor }}>
                     <div className="homepage-box-icon">
                         <img src={homepageboxicon} />

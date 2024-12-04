@@ -75,7 +75,6 @@ const DailyChallenges: React.FC<DailyChallengesProps> = ({ buttonBackgroundColor
 
   return (
     <div className="daily-challenges-container">
-      {/* Apply dynamic background color to the button */}
       <button
         onClick={handleShowChallenge}
         className="daily-challenges-button"
