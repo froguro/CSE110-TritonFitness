@@ -58,6 +58,7 @@ const UICustomPopup: React.FC<UICustomPopupProps> = ({
           <div className="ui-custom-popup-content">
             <h2>Customize Your UI</h2>
 
+            {/* Body Background Color */}
             <div className="customization-option">
               <label htmlFor="body-background-color">Body Background Color:</label>
               <input
