@@ -6,7 +6,8 @@ const emotionsList = [
   'Calm', 'Disgust', 'Fearful', 'Motivated', 'Lazy'
 ];
 
-const EmotionTracker = () => {
+const EmotionTracker = ({ buttonBackgroundColor }) => {
+
   const [selectedEmotions, setSelectedEmotions] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -35,7 +36,7 @@ const EmotionTracker = () => {
   return (
 
     <div className="emotion-tracker-page">
-      <button className="track-emotions-button" onClick={openModal}>
+      <button className="track-emotions-button" onClick={openModal} style={{ backgroundColor: buttonBackgroundColor }}>
         Track Emotions
       </button>
 

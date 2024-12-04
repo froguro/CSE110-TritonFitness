@@ -3,12 +3,17 @@ import { GoogleLogin } from '@react-oauth/google';
 import { jwtDecode } from 'jwt-decode';
 import { User } from '../types/user';
 import './LoginPopUp.css';
+import { Link } from 'react-router-dom';
 
 interface LoginPopUpProps {
   onSignIn: (userData: User) => void;
 }
 
-const LoginPopUp: React.FC<LoginPopUpProps> = ({ onSignIn }) => {
+interface LoginPopUpProps {
+  buttonBackgroundColor: string; // Add prop for button background color
+}
+
+const LoginPopUp: React.FC<LoginPopUpProps> = ({ onSignIn , buttonBackgroundColor }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -21,6 +26,8 @@ const LoginPopUp: React.FC<LoginPopUpProps> = ({ onSignIn }) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError('');
+
     try {
       const response = await fetch('http://localhost:3001/api/login', {
         method: 'POST',
@@ -39,9 +46,10 @@ const LoginPopUp: React.FC<LoginPopUpProps> = ({ onSignIn }) => {
       onSignIn({
         id: data.userId,
         email: email,
-        name: '',
-        picture: ''
+        name: data.name || email.split('@')[0],
+        picture: data.picture || '',
       });
+      
       setIsModalOpen(false);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred');
@@ -51,6 +59,8 @@ const LoginPopUp: React.FC<LoginPopUpProps> = ({ onSignIn }) => {
   const handleGoogleSuccess = async (credentialResponse: any) => {
     try {
       const decoded: any = jwtDecode(credentialResponse.credential);
+      
+      console.log('Decoded Google data:', decoded);
       
       const response = await fetch('http://localhost:3001/api/google-login', {
         method: 'POST',
@@ -75,11 +85,12 @@ const LoginPopUp: React.FC<LoginPopUpProps> = ({ onSignIn }) => {
         id: data.userId,
         email: decoded.email,
         name: decoded.name,
-        picture: decoded.picture
+        picture: decoded.picture || data.picture
       });
       
       setIsModalOpen(false);
     } catch (err) {
+      console.error('Google login error:', err);
       setError(err instanceof Error ? err.message : 'An error occurred');
     }
   };
@@ -89,7 +100,7 @@ const LoginPopUp: React.FC<LoginPopUpProps> = ({ onSignIn }) => {
 
   return (
     <div>
-      <button onClick={openModal} className="open-modal-button">Log In</button>
+      <button onClick={openModal} className="open-modal-button" style={{ backgroundColor: buttonBackgroundColor }}>Log In</button>
 
       {isModalOpen && (
         <div className="modal-overlay" onClick={closeModal}>
@@ -140,7 +151,7 @@ const LoginPopUp: React.FC<LoginPopUpProps> = ({ onSignIn }) => {
               </div>
               <div className="create-account-link">
                 <span>Don't have an account? </span>
-                <a href="/create-account">Create An Account</a>
+                <Link to="/signup">Create An Account</Link>
               </div>
             </form>
           </div>

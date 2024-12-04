@@ -1,3 +1,5 @@
+
+
 .homepage-header {
     display: flex;
     align-items: center;
@@ -27,7 +29,7 @@
 }
 
 .homepage-box {
-    border: 2px solid #e0e0e0;
+    border: 2px solid black;
     border-radius: 10px;
     padding: 15px;
     width: 1440px;
@@ -64,15 +66,30 @@
     cursor: pointer;
 }
 
-.profile-section {
+.homepage-profile-section {
   display: flex;
   align-items: center;
 }
 
-.profile-image {
+.homepage-profile-image {
   width: 40px;
   height: 40px;
   border-radius: 50%;
   object-fit: cover;
   cursor: pointer;
+}
+
+.homepage {
+    overflow: auto;
+}
+
+.profile-page-button{
+    border-radius: 8px;
+    cursor: pointer;
+    margin-left: 10px;
+    padding: 5px;
+}
+
+.homepage-profile-image {
+    border: 2px solid black;
 }
