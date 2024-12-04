@@ -11,7 +11,11 @@ const exerciseList = [
   { name: '15 Sit-ups', videoUrl: 'https://www.youtube.com/watch?v=jDwoBqPH0jk' },
 ];
 
-const DailyChallenges = () => {
+interface DailyChallengesProps {
+  buttonBackgroundColor: string; // Add prop for button background color
+}
+const DailyChallenges: React.FC<DailyChallengesProps> = ({ buttonBackgroundColor }) => {
+
   const [showChallenge, setShowChallenge] = useState(false);
   const [dailyChallenges, setDailyChallenges] = useState<{ name: string; videoUrl: string }[]>([]);
 
@@ -32,7 +36,12 @@ const DailyChallenges = () => {
 
   return (
     <div className="daily-challenges-container">
-      <button onClick={handleShowChallenge} className="daily-challenges-button">
+      {/* Apply dynamic background color to the button */}
+      <button
+        onClick={handleShowChallenge}
+        className="daily-challenges-button"
+        style={{ backgroundColor: buttonBackgroundColor }}
+      >
         Show Challenges
       </button>
       {showChallenge && (
@@ -47,13 +56,18 @@ const DailyChallenges = () => {
                   <button
                     onClick={() => window.open(exercise.videoUrl, '_blank')}
                     className="video-button"
+                    style={{ backgroundColor: buttonBackgroundColor }} // Apply dynamic background color
                   >
                     Watch Video
                   </button>
                 </li>
               ))}
             </ul>
-            <button onClick={handleHideChallenge} className="daily-challenges-close-button">
+            <button
+              onClick={handleHideChallenge}
+              className="daily-challenges-close-button"
+              style={{ backgroundColor: buttonBackgroundColor }} // Apply dynamic background color
+            >
               Close
             </button>
           </div>

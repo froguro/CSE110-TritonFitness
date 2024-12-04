@@ -14,11 +14,15 @@ import MetricsPage from '../metricsPage/metricsPage';
 interface HomePageProps {
   user: User | null;
   onSignIn: (userData: User) => void;
+  backgroundColor: string; // Dynamic body background color
+  boxBackgroundColor: string; // Dynamic box background color
+  buttonBackgroundColor: string; // Dynamic button background color
 }
 
-const HomePage: React.FC<HomePageProps> = ({ user, onSignIn }) => {
+const HomePage: React.FC<HomePageProps> = ({ 
+    user, onSignIn, backgroundColor, boxBackgroundColor, buttonBackgroundColor }) => {
     return (
-        <div className="homepage">
+        <div className="homepage" style={{ backgroundColor }}>
             <div className="homepage-header">
                 <img src={threelinedropdown} alt="menu" /> 
                 <h1>Home</h1>
@@ -36,7 +40,7 @@ const HomePage: React.FC<HomePageProps> = ({ user, onSignIn }) => {
             </div>
             <div className="homepage-horizontal-line"></div>
             <div className="homepage-section-list">
-                <div className="homepage-box">
+                <div className="homepage-box" style={{ backgroundColor: boxBackgroundColor }}>
                     <div className="homepage-box-icon">
                         <img src={homepageboxicon} />
                     </div>
@@ -47,10 +51,11 @@ const HomePage: React.FC<HomePageProps> = ({ user, onSignIn }) => {
                                 the progression of your physical abilities.
                             </p>
                         </div>
-                        <MetricsPage />
+                        <MetricsPage buttonBackgroundColor={buttonBackgroundColor}/>
                     </div>
                 </div>
-                <div className="homepage-box">
+
+                <div className="homepage-box" style={{ backgroundColor: boxBackgroundColor }}>
                     <div className="homepage-box-icon">
                         <img src={homepageboxicon} />
                     </div>
@@ -63,10 +68,10 @@ const HomePage: React.FC<HomePageProps> = ({ user, onSignIn }) => {
                                 also be used for recovering a lost streak if you miss a workout.
                             </p>
                         </div>
-                        <DailyChallenges />
+                        <DailyChallenges buttonBackgroundColor={buttonBackgroundColor} />
                     </div>
                 </div>
-                <div className="homepage-box">
+                <div className="homepage-box" style={{ backgroundColor: boxBackgroundColor }}>
                     <div className="homepage-box-icon">
                         <img src={homepageboxicon} />
                     </div>
@@ -80,11 +85,11 @@ const HomePage: React.FC<HomePageProps> = ({ user, onSignIn }) => {
                             </p>
                         </div>
                         <Link to="/video-demonstrations">
-                            <button className="homepage-section-box-button">Watch Now</button>
+                        <button className="homepage-section-box-button" style={{ backgroundColor: buttonBackgroundColor }}>Watch Now</button>
                         </Link>
                     </div>
                 </div>
-                <div className="homepage-box">
+                <div className="homepage-box" style={{ backgroundColor: boxBackgroundColor }}>
                     <div className="homepage-box-icon">
                         <img src={homepageboxicon} />
                     </div>
@@ -96,10 +101,10 @@ const HomePage: React.FC<HomePageProps> = ({ user, onSignIn }) => {
                                 can view the history of your mood patterns. 
                             </p>
                         </div>
-                        <EmotionTracker />
+                        <EmotionTracker buttonBackgroundColor={buttonBackgroundColor} />
                     </div>
                 </div>
-                <div className="homepage-box">
+                <div className="homepage-box" style={{ backgroundColor: boxBackgroundColor }}>
                     <div className="homepage-box-icon">
                         <img src={homepageboxicon} />
                     </div>
@@ -109,7 +114,7 @@ const HomePage: React.FC<HomePageProps> = ({ user, onSignIn }) => {
                             <p>Description. Lorem ipsum odor amet, consectetuer adipiscing elit. 
                             </p>
                         </div>
-                        <ExerciseRecommendations />
+                        <ExerciseRecommendations buttonBackgroundColor={buttonBackgroundColor}/>
                     </div>
                 </div>
             </div>
