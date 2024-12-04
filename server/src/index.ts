@@ -119,14 +119,10 @@ app.post('/api/google-login', async (req, res) => {
   const { email, googleId, name, picture } = req.body;
 
   try {
-    console.log('Received Google login request:', { email, googleId, name }); // Debug log
-
     // Check if user exists
     let user = await db.get('SELECT * FROM users WHERE google_id = ?', [googleId]);
 
     if (!user) {
-      console.log('Creating new user with Google credentials'); // Debug log
-      
       // Create new user if doesn't exist
       const result = await db.run(
         'INSERT INTO users (email, google_id, name, picture) VALUES (?, ?, ?, ?)',
@@ -140,17 +136,22 @@ app.post('/api/google-login', async (req, res) => {
         name,
         picture
       };
-      console.log('New user created:', user); // Debug log
     } else {
-      console.log('Existing user found:', user); // Debug log
+      // Update the user's picture if it has changed
+      await db.run(
+        'UPDATE users SET picture = ? WHERE google_id = ?',
+        [picture, googleId]
+      );
+      user.picture = picture;
     }
 
     res.json({ 
-      message: 'Login successful', 
-      userId: user.id 
+      message: 'Login successful',
+      userId: user.id,
+      picture: user.picture
     });
   } catch (error) {
-    console.error('Google login error:', error); // Debug log
+    console.error('Google login error:', error);
     res.status(500).json({ 
       error: 'An error occurred during Google login',
       details: error instanceof Error ? error.message : 'Unknown error'

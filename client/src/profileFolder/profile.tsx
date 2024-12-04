@@ -33,15 +33,18 @@ const Profile: React.FC<ProfileProps> = ({
       <div className="profile-avatar">
         <img
           src={user.picture || profilePlaceholder}
-          alt={`${user.name}'s Avatar`}
+          alt="Profile Avatar"
           className="avatar-image"
+          onError={(e) => {
+            e.currentTarget.src = profilePlaceholder;
+          }}
         />
       </div>
 
       {/* User Info */}
       <div className="profile-info">
         <h2>
-          {user.name} {user.id && `(${user.id})`}
+          {user.name} {user.id && `#${user.id}`}
         </h2>
         <p>Email: {user.email || 'N/A'}</p>
         <p>Points: {Points}</p>
