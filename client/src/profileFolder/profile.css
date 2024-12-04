@@ -19,9 +19,13 @@
     height: 100px;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid black;
+    border: 2px solid #6c63ff;
+    background-color: #f5f5f5;
 }
 
+.avatar-image[src=""] {
+    display: none;
+}
 
 .profile-info h2 {
     font-size: 24px;

@@ -43,6 +43,7 @@ function App() {
   };
 
   const handleSignIn = (userData: User) => {
+    console.log('User data on sign in:', userData);
     setUser(userData);
   };
 
@@ -71,7 +72,9 @@ function App() {
           <Route
             path="/profile" 
             element={
-              <Profile user={user} backgroundColor={bodyBackgroundColor}
+              <Profile 
+                user={user}
+                backgroundColor={bodyBackgroundColor}
                 onChangeBackgroundColor={handleBackgroundColorChange}
                 onChangeBoxBackgroundColor={handleBoxColorChange}
                 onChangeButtonBackgroundColor={handleButtonColorChange}
