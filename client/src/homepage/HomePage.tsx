@@ -34,7 +34,7 @@ const HomePage: React.FC<HomePageProps> = ({
                             className="homepage-profile-image"
                         />
                     ) : (
-                        <LoginPopUp onSignIn={onSignIn} />
+                        <LoginPopUp onSignIn={onSignIn} buttonBackgroundColor={buttonBackgroundColor}/>
                     )}
                 </div>
             </div>
