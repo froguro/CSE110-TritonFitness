@@ -1,7 +1,11 @@
 import React, {useState} from 'react';
 import './metricsPage.css';
 
-const MetricsPage = () => {
+interface MetricsPageProps {
+  buttonBackgroundColor: string; // Add prop for button background color
+}
+
+const MetricsPage: React.FC<MetricsPageProps> = ({ buttonBackgroundColor }) => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -51,7 +55,7 @@ const MetricsPage = () => {
 
 
     <div className="metrics-pop-up">
-      <button className="metrics-button" onClick={openModal}>
+      <button className="metrics-button" onClick={openModal} style={{ backgroundColor: buttonBackgroundColor }}>
         Track Metrics
       </button>
 
