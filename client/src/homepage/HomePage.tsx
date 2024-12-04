@@ -1,10 +1,15 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import homepageboxicon from "./homepage-box-icon.svg";
 import threelinedropdown from './three-line-dropdown.svg';
 import profileplaceholder from './profileplaceholder.svg';
 import LoginPopUp from '../LoginPopUpFolder/LoginPopUp';
 import { User } from '../types/user';
 import './HomePage.css';
+import DailyChallenges from '../Daily_Challenges/Daily_challenges';
+import EmotionTracker from '../emotionsTrackerFolder/emotionsTracker';
+import ExerciseRecommendations from '../exerciseRecommendations/exerciseRecommendations';
+import MetricsPage from '../metricsPage/metricsPage';
 
 interface HomePageProps {
   user: User | null;
@@ -17,12 +22,12 @@ const HomePage: React.FC<HomePageProps> = ({ user, onSignIn }) => {
             <div className="homepage-header">
                 <img src={threelinedropdown} alt="menu" /> 
                 <h1>Home</h1>
-                <div className="profile-section">
+                <div className="homepage-profile-section">
                     {user ? (
                         <img 
                             src={user.picture || profileplaceholder} 
                             alt={user.name} 
-                            className="profile-image"
+                            className="homepage-profile-image"
                         />
                     ) : (
                         <LoginPopUp onSignIn={onSignIn} />
@@ -42,7 +47,7 @@ const HomePage: React.FC<HomePageProps> = ({ user, onSignIn }) => {
                                 the progression of your physical abilities.
                             </p>
                         </div>
-                        <button className="homepage-section-box-button">Record Now</button>
+                        <MetricsPage />
                     </div>
                 </div>
                 <div className="homepage-box">
@@ -58,7 +63,7 @@ const HomePage: React.FC<HomePageProps> = ({ user, onSignIn }) => {
                                 also be used for recovering a lost streak if you miss a workout.
                             </p>
                         </div>
-                        <button className="homepage-section-box-button">View Challenges</button>
+                        <DailyChallenges />
                     </div>
                 </div>
                 <div className="homepage-box">
@@ -74,7 +79,9 @@ const HomePage: React.FC<HomePageProps> = ({ user, onSignIn }) => {
                                 provide feedback on videos, like or dislike videos, and share/save videos.
                             </p>
                         </div>
-                        <button className="homepage-section-box-button">Watch Now</button>
+                        <Link to="/video-demonstrations">
+                            <button className="homepage-section-box-button">Watch Now</button>
+                        </Link>
                     </div>
                 </div>
                 <div className="homepage-box">
@@ -89,7 +96,20 @@ const HomePage: React.FC<HomePageProps> = ({ user, onSignIn }) => {
                                 can view the history of your mood patterns. 
                             </p>
                         </div>
-                        <button className="homepage-section-box-button">Log Emotions</button>
+                        <EmotionTracker />
+                    </div>
+                </div>
+                <div className="homepage-box">
+                    <div className="homepage-box-icon">
+                        <img src={homepageboxicon} />
+                    </div>
+                    <div className="homepage-box-container">
+                        <div className="homepage-section-box-content">
+                            <h2>Exercise Recommendations</h2>
+                            <p>Description. Lorem ipsum odor amet, consectetuer adipiscing elit. 
+                            </p>
+                        </div>
+                        <ExerciseRecommendations />
                     </div>
                 </div>
             </div>

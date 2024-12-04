@@ -64,15 +64,19 @@
     cursor: pointer;
 }
 
-.profile-section {
+.homepage-profile-section {
   display: flex;
   align-items: center;
 }
 
-.profile-image {
+.homepage-profile-image {
   width: 40px;
   height: 40px;
   border-radius: 50%;
   object-fit: cover;
   cursor: pointer;
+}
+
+.homepage {
+    overflow: auto;
 }
