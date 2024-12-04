@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import './App.css';
@@ -15,6 +15,31 @@ function App() {
   const [bodyBackgroundColor, setBodyBackgroundColor] = useState('#ffffff');
   const [boxBackgroundColor, setBoxBackgroundColor] = useState('#ffffff');
   const [buttonBackgroundColor, setButtonBackgroundColor] = useState('#e0e0e0');
+
+  useEffect(() => {
+    const savedBodyColor = localStorage.getItem('bodyBackgroundColor') || '#ffffff';
+    const savedBoxColor = localStorage.getItem('boxBackgroundColor') || '#ffffff';
+    const savedButtonColor = localStorage.getItem('buttonBackgroundColor') || '#e0e0e0';
+
+    setBodyBackgroundColor(savedBodyColor);
+    setBoxBackgroundColor(savedBoxColor);
+    setButtonBackgroundColor(savedButtonColor);
+  }, []);
+
+  const handleBackgroundColorChange = (color: string) => {
+    setBodyBackgroundColor(color);
+    localStorage.setItem('bodyBackgroundColor', color);
+  };
+
+  const handleBoxColorChange = (color: string) => {
+    setBoxBackgroundColor(color);
+    localStorage.setItem('boxBackgroundColor', color);
+  };
+
+  const handleButtonColorChange = (color: string) => {
+    setButtonBackgroundColor(color);
+    localStorage.setItem('buttonBackgroundColor', color);
+  };
 
   const handleSignIn = (userData: User) => {
     setUser(userData);
