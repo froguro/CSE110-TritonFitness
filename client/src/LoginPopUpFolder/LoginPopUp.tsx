@@ -60,6 +60,8 @@ const LoginPopUp: React.FC<LoginPopUpProps> = ({ onSignIn , buttonBackgroundColo
     try {
       const decoded: any = jwtDecode(credentialResponse.credential);
       
+      console.log('Decoded Google data:', decoded);
+      
       const response = await fetch('http://localhost:3001/api/google-login', {
         method: 'POST',
         headers: {
@@ -83,11 +85,12 @@ const LoginPopUp: React.FC<LoginPopUpProps> = ({ onSignIn , buttonBackgroundColo
         id: data.userId,
         email: decoded.email,
         name: decoded.name,
-        picture: decoded.picture
+        picture: decoded.picture || data.picture
       });
       
       setIsModalOpen(false);
     } catch (err) {
+      console.error('Google login error:', err);
       setError(err instanceof Error ? err.message : 'An error occurred');
     }
   };
