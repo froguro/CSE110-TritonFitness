@@ -1,0 +1,102 @@
+.popup-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center; /* Start from the bottom for slide-up */
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5); /* Dim background */
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+  
+  .popup-container.hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
+  
+  .popup-content {
+    background-color: white;
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+    transform: translateY(100%); /* Start off-screen */
+    transition: transform 0.5s ease; /* Slide-up effect */
+  }
+  
+  .popup-container.visible .popup-content {
+    transform: translateY(0); /* Slide into view */
+  }
+  
+  .popup-container.hidden .popup-content {
+    transform: translateY(100%); /* Slide out of view */
+  }
+  
+  .streak-image {
+    width: 150px;
+    height: auto;
+    margin: 0 auto;
+  }
+  
+  .streak-number {
+    font-size: 48px;
+    font-weight: bold;
+    color: #00a300; /* Green color from Figma */
+    margin: 20px 0 10px;
+  }
+  
+  .streak-text {
+    font-size: 24px;
+    color: #00a300;
+    margin: 10px 0 20px;
+  }
+  
+  .streak-info {
+    font-size: 20px;
+    color: #007bff;
+    margin: 10px 0 20px;
+  }
+  
+  .share-button {
+    background-color: #007bff; /* Blue button */
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 50px; /* changing this will change the spacing between the share button and continue button */
+
+  }
+  
+  .share-button:hover { /* What it looks like when you hover on the share button */
+    background-color: #0056b3; /* Darker blue */
+  }
+  
+  .continue-button {
+    position: absolute;
+    bottom: 10px;
+    left: 20px;
+    font-size: 14px;
+    color: white;
+    background-color: #00a300;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+
+  }
+  
+  .continue-button:hover { /* What it looks like when you hover on the share button */
+    background-color: #093709; /* darker green */
+    text-decoration: none;
+  }
+  
