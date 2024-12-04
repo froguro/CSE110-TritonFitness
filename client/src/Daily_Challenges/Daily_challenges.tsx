@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Daily_challenges.css';
 
 const exerciseList = [
@@ -12,21 +12,60 @@ const exerciseList = [
 ];
 
 interface DailyChallengesProps {
-  buttonBackgroundColor: string; // Add prop for button background color
+  buttonBackgroundColor: string;
 }
-const DailyChallenges: React.FC<DailyChallengesProps> = ({ buttonBackgroundColor }) => {
 
+const DailyChallenges: React.FC<DailyChallengesProps> = ({ buttonBackgroundColor }) => {
   const [showChallenge, setShowChallenge] = useState(false);
   const [dailyChallenges, setDailyChallenges] = useState<{ name: string; videoUrl: string }[]>([]);
+  const [timeRemaining, setTimeRemaining] = useState<string>('');
 
   const generateNewChallenges = () => {
     const shuffled = [...exerciseList].sort(() => 0.5 - Math.random());
     const selectedChallenges = shuffled.slice(0, 3);
     setDailyChallenges(selectedChallenges);
+
+    const nextResetTime = Date.now() + 24 * 60 * 60 * 1000;
+    localStorage.setItem('dailyChallenges', JSON.stringify(selectedChallenges));
+    localStorage.setItem('nextResetTime', nextResetTime.toString());
+    calculateTimeRemaining(nextResetTime);
   };
 
+  const calculateTimeRemaining = (nextResetTime: number) => {
+    const now = Date.now();
+    const difference = nextResetTime - now;
+
+    if (difference <= 0) {
+      generateNewChallenges();
+    } else {
+      const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((difference / (1000 * 60)) % 60);
+      const seconds = Math.floor((difference / 1000) % 60);
+
+      setTimeRemaining(`${hours}h ${minutes}m ${seconds}s`);
+    }
+  };
+
+  useEffect(() => {
+    const savedChallenges = localStorage.getItem('dailyChallenges');
+    const nextResetTime = localStorage.getItem('nextResetTime');
+
+    if (savedChallenges && nextResetTime) {
+      setDailyChallenges(JSON.parse(savedChallenges));
+      calculateTimeRemaining(Number(nextResetTime));
+
+
+      const interval = setInterval(() => {
+        calculateTimeRemaining(Number(nextResetTime));
+      }, 1000);
+
+      return () => clearInterval(interval); 
+    } else {
+      generateNewChallenges(); 
+    }
+  }, []);
+
   const handleShowChallenge = () => {
-    generateNewChallenges();
     setShowChallenge(true);
   };
 
@@ -56,17 +95,18 @@ const DailyChallenges: React.FC<DailyChallengesProps> = ({ buttonBackgroundColor
                   <button
                     onClick={() => window.open(exercise.videoUrl, '_blank')}
                     className="video-button"
-                    style={{ backgroundColor: buttonBackgroundColor }} // Apply dynamic background color
+                    style={{ backgroundColor: buttonBackgroundColor }}
                   >
                     Watch Video
                   </button>
                 </li>
               ))}
             </ul>
+            <p className="countdown-text">Time Remaining: {timeRemaining}</p>
             <button
               onClick={handleHideChallenge}
               className="daily-challenges-close-button"
-              style={{ backgroundColor: buttonBackgroundColor }} // Apply dynamic background color
+              style={{ backgroundColor: buttonBackgroundColor }} 
             >
               Close
             </button>
