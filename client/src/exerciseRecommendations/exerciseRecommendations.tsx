@@ -4,7 +4,12 @@ import "./exerciseRecommendations.css";
 // Import enums for dropdown options
 import { Muscle, Level, Equipment, Category } from "../types/exercises";
 
-const ExerciseRecommendations = () => {
+
+interface ExerciseRecommendationsProps {
+buttonBackgroundColor: string; // Add prop for button background color
+}
+
+const ExerciseRecommendations: React.FC<ExerciseRecommendationsProps> = ({ buttonBackgroundColor }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [recommendations, setRecommendations] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -66,7 +71,7 @@ const ExerciseRecommendations = () => {
 
   return (
     <div className="exercise-popup">
-      <button className="recommendation-button" onClick={openModal}>
+      <button className="recommendation-button" onClick={openModal} style={{ backgroundColor: buttonBackgroundColor }}>
         Recommend
       </button>
 

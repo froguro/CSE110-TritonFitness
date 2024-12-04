@@ -9,7 +9,11 @@ interface LoginPopUpProps {
   onSignIn: (userData: User) => void;
 }
 
-const LoginPopUp: React.FC<LoginPopUpProps> = ({ onSignIn }) => {
+interface LoginPopUpProps {
+  buttonBackgroundColor: string; // Add prop for button background color
+}
+
+const LoginPopUp: React.FC<LoginPopUpProps> = ({ onSignIn , buttonBackgroundColor }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -93,7 +97,7 @@ const LoginPopUp: React.FC<LoginPopUpProps> = ({ onSignIn }) => {
 
   return (
     <div>
-      <button onClick={openModal} className="open-modal-button">Log In</button>
+      <button onClick={openModal} className="open-modal-button" style={{ backgroundColor: buttonBackgroundColor }}>Log In</button>
 
       {isModalOpen && (
         <div className="modal-overlay" onClick={closeModal}>

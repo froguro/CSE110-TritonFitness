@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import './VideoDemonstrations.css';
 
+interface VideoDemonstrationsProps {
+    buttonBackgroundColor: string; // Add prop for button background color
+  }
+
 const workouts = [
     { 
         id: 1,
@@ -76,8 +80,8 @@ const workouts = [
     },
     
   ];
-
-const VideoDemonstrations = () => {
+  
+const VideoDemonstrations: React.FC<VideoDemonstrationsProps> = ({ buttonBackgroundColor }) => {
     const [selectedCategory, setSelectedCategory] = useState("Select Category");
     const [selectedWorkout, setSelectedWorkout] = useState("");
     const [url, setUrl] = useState("");
