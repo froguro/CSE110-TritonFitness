@@ -8,6 +8,7 @@ import { User } from './types/user';
 import SignUp from './SignUp/SignUp';
 import UICustomPopup from './uiCustomFolder/ui_custom';
 import Profile from './profileFolder/profile';
+import StreakPopup from './StreakPopup/StreakPopup';
 
 const GOOGLE_CLIENT_ID = process.env.REACT_APP_GOOGLE_CLIENT_ID!;
 
