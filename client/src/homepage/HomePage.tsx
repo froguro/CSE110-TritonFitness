@@ -123,7 +123,7 @@ const HomePage: React.FC<HomePageProps> = ({
                             <p>Description. Lorem ipsum odor amet, consectetuer adipiscing elit. 
                             </p>
                         </div>
-                        <ExerciseRecommendations buttonBackgroundColor={buttonBackgroundColor}/>
+                        <ExerciseRecommendations user={user} buttonBackgroundColor={buttonBackgroundColor}/>
                     </div>
                 </div>
             </div>
