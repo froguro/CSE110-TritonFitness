@@ -55,8 +55,6 @@ const Profile: React.FC<ProfileProps> = ({
       {/* User Actions */}
       <div className="profile-actions">
         <button className="profile-button settings-button">⚙️ User Settings (Not Functional)</button>
-        {/* <button className="profile-button customize-button">✏️ Customize</button> */}
-        {/* <button className="profile-button streak-button">✅ Share Your Streak (Not Functional)</button> */}
       </div>
 
       {/* UI Customization */}
