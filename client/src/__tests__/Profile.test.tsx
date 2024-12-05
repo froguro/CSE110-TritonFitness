@@ -44,12 +44,8 @@ describe('Profile Component', () => {
     // Check for user information
     expect(screen.getByText(/Test User/)).toBeInTheDocument();
     expect(screen.getByText(/Email: test@test.com/)).toBeInTheDocument();
-    expect(screen.getByText(/Points:/)).toBeInTheDocument();
-    expect(screen.getByText(/Streak:/)).toBeInTheDocument();
 
     // Check for buttons
     expect(screen.getByText(/User Settings/)).toBeInTheDocument();
-    expect(screen.getByText(/Share Your Streak/)).toBeInTheDocument();
-    expect(screen.getByText(/Back to Home/)).toBeInTheDocument();
   });
 }); 

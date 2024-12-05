@@ -4,6 +4,7 @@ import profilePlaceholder from '../homepage/profileplaceholder.svg';
 import { User } from '../types/user';
 import UICustomPopup from '../uiCustomFolder/ui_custom';
 import { Link } from 'react-router-dom';
+import StreakPopup from '../StreakPopup/StreakPopup';
 
 interface ProfileProps {
   user: User | null;
@@ -48,14 +49,12 @@ const Profile: React.FC<ProfileProps> = ({
         </h2>
         <p>Email: {user.email || 'N/A'}</p>
         <p>Points: {Points}</p>
-        <p>Streak: {Streak} days</p>
+        {/* <p>Streak: {Streak} days</p> */}
       </div>
 
       {/* User Actions */}
       <div className="profile-actions">
         <button className="profile-button settings-button">⚙️ User Settings (Not Functional)</button>
-        {/* <button className="profile-button customize-button">✏️ Customize</button> */}
-        <button className="profile-button streak-button">✅ Share Your Streak (Not Functional)</button>
       </div>
 
       {/* UI Customization */}
@@ -65,6 +64,10 @@ const Profile: React.FC<ProfileProps> = ({
           onChangeBoxBackgroundColor={onChangeBoxBackgroundColor}
           onChangeButtonBackgroundColor={onChangeButtonBackgroundColor}
         />
+      </div>
+
+      <div className="streak-popup-section">
+        <StreakPopup user={user}/>
       </div>
 
       {/* Back to Home Button */}

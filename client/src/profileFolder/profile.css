@@ -27,10 +27,14 @@
     display: none;
 }
 
+.profile-info{
+    text-align: center;
+}
 .profile-info h2 {
     font-size: 24px;
     font-weight: bold;
     margin: 10px 0;
+
 }
 
 .profile-info p {
