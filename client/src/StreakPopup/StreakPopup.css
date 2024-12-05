@@ -28,6 +28,7 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
     transform: translateY(100%); /* Start off-screen */
     transition: transform 0.5s ease; /* Slide-up effect */
+    padding-bottom: 5px;
   }
   
   .popup-container.visible .popup-content {
@@ -84,6 +85,8 @@
     bottom: 10px;
     left: 20px;
     font-size: 14px;
+    left: 50%;
+    transform: translateX(-50%);
     color: white;
     background-color: #00a300;
     border: none;
@@ -92,11 +95,28 @@
     cursor: pointer;
     text-align: center;
     text-decoration: none;
-
   }
   
   .continue-button:hover { /* What it looks like when you hover on the share button */
     background-color: #093709; /* darker green */
     text-decoration: none;
   }
-  
+
+  .open-streak-popup-button {
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    background-color: #f2f2f2;
+    color: black;
+    width: 300px;
+    margin-top: 10px;
+}
+
+.open-streak-popup-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}

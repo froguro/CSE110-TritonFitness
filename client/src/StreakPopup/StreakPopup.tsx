@@ -1,28 +1,50 @@
 import React, { useState } from 'react'; //imports React
 import './StreakPopup.css'; //imports CSS
 import streakCharacter from './streak-character.png'; // imports the image, we can use the name streakCharacter as a variable 
+import profilePlaceholder from '../homepage/profileplaceholder.svg';
+import { User } from '../types/user';
 
-const StreakPopup = () => { // defining a functional react component called StreakPopup
-    const [isVisible, setIsVisible] = useState(true); // State to control popup visibility (true = visible, false = hidden)
+interface StreakPopupProps {
+  user: User | null;
+}
 
-    const handleContinue = () => { // Function to handle "continue" button click
-        setIsVisible(false); // Set visibility to false, triggering the slide-down animation
 
-        // Optional: Add any cleanup logic here after animation ends
-        setTimeout(() => {
-            console.log("Popup hidden"); // Example cleanup logic (remove if unnecessary)
-        }, 500); // Match the animation duration in CSS (0.5s)
-    };
+const StreakPopup: React.FC<StreakPopupProps> = ({ user }) => {
+
+
+  const [isVisible, setIsVisible] = useState(false); // State to control popup visibility
+
+  const togglePopup = () => {
+    setIsVisible(!isVisible);
+  };
+
+  if (!user) {
+    return <p className="no-user-message">No user data available. Please log in.</p>;
+  }
 
     return ( 
-      <div className={`popup-container ${isVisible ? 'visible' : 'hidden'}`}> {/* Dynamic class for visibility */}
-        <div className="popup-content">
-          <img src={streakCharacter} alt="Streak Character" className="streak-image" /> {/* Displays the streak character image */}
-          <h1 className="streak-number">2</h1> {/* Displays the number "2" */}
-          <p className="streak-text">day streak!</p> {/* Displays the text "day streak!" */}
-          <p className="streak-info">You have logged in your exercises <br /> two days in a row! </p> {/* Additional streak info! */}
-          <button className="share-button">SHARE</button> {/* SHARE button (not functional for now) */}
-          <button className="continue-button" onClick={handleContinue}>continue</button> {/* Triggers the slide-down animation */}
+      <div>
+        <button className="open-streak-popup-button" onClick={togglePopup}>
+          {isVisible ? 'Close Streak' : '🔥 Show Streak'}
+        </button>
+
+        <div className={`popup-container ${isVisible ? 'visible' : 'hidden'}`}> {/* Dynamic class for visibility */}
+          <div className="popup-content">
+            {/* <img src={streakCharacter} alt="Streak Character" className="streak-image" /> Displays the streak character image */}
+              <img
+                src={user.picture || profilePlaceholder}
+                alt="Profile Avatar"
+                className="avatar-image"
+                onError={(e) => {
+                  e.currentTarget.src = profilePlaceholder;
+              }}
+              />
+            <h1 className="streak-number">15</h1> {/* Displays the number "2" */}
+            <p className="streak-text">day streak!</p> {/* Displays the text "day streak!" */}
+            <p className="streak-info">You have logged in your exercises <br /> fifteen days in a row! </p> {/* Additional streak info! */}
+            <button className="share-button">SHARE</button> {/* SHARE button (not functional for now) */}
+            <button className="continue-button" onClick={togglePopup}>Exit</button> {/* Triggers the slide-down animation */}
+          </div>
         </div>
       </div>
     );

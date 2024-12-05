@@ -4,6 +4,8 @@ import { jwtDecode } from 'jwt-decode';
 import { User } from '../types/user';
 import './LoginPopUp.css';
 import { Link } from 'react-router-dom';
+import { ReactComponent as EyeOn } from '../SignUp/eyeOn.svg';
+import { ReactComponent as EyeOff } from '../SignUp/eyeOff.svg';
 
 interface LoginPopUpProps {
   onSignIn: (userData: User) => void;
@@ -135,7 +137,7 @@ const LoginPopUp: React.FC<LoginPopUpProps> = ({ onSignIn , buttonBackgroundColo
                     onClick={handleTogglePasswordVisibility}
                     className="toggle-password-visibility"
                   >
-                    {passwordVisible ? 'No' : 'Yes'}
+                    {passwordVisible ? <EyeOn />  :  <EyeOff />}
                   </button>
                 </div>
               </div>
