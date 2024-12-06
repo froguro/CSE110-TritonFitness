@@ -96,6 +96,15 @@ export async function initializeDatabase() {
 
   console.log('Emotions, users, and exercises tables have been initialized and populated.');
   
+  await db.exec(`
+    CREATE TABLE IF NOT EXISTS saved_exercises (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      user_id INTEGER NOT NULL,
+      exercise_id INTEGER NOT NULL,
+      UNIQUE(user_id, exercise_id) -- Prevent duplicate saves
+    );
+  `);
+
   try {
     await db.exec(`
       CREATE TABLE IF NOT EXISTS metrics (

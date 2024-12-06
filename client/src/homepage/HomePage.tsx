@@ -120,10 +120,10 @@ const HomePage: React.FC<HomePageProps> = ({
                     <div className="homepage-box-container">
                         <div className="homepage-section-box-content">
                             <h2>Exercise Recommendations</h2>
-                            <p>Description. Lorem ipsum odor amet, consectetuer adipiscing elit. 
+                            <p>Discover personalized exercises tailored to your fitness level and preferences. Easily access and review your saved exercises. 
                             </p>
                         </div>
-                        <ExerciseRecommendations buttonBackgroundColor={buttonBackgroundColor}/>
+                        <ExerciseRecommendations user={user} buttonBackgroundColor={buttonBackgroundColor}/>
                     </div>
                 </div>
             </div>

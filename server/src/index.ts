@@ -164,7 +164,7 @@ app.post('/api/recommend-exercises', async (req, res) => {
 
   try {
     const query = `
-      SELECT DISTINCT name, primaryMuscles, secondaryMuscles, level, category, equipment, instructions
+      SELECT DISTINCT id, name, primaryMuscles, secondaryMuscles, level, category, equipment, instructions
       FROM (
         SELECT *,
           (CASE WHEN primaryMuscles LIKE ? THEN 3 ELSE 0 END) + 
@@ -199,6 +199,50 @@ app.post('/api/recommend-exercises', async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch exercises' });
   }
 });
+
+app.post('/api/save-exercise', async (req, res) => {
+  const { userId, exerciseId } = req.body;
+
+  try {
+    console.log('Saving exercise with:', { userId, exerciseId });
+
+    await db.run(
+      'INSERT INTO saved_exercises (user_id, exercise_id) VALUES (?, ?)',
+      [userId, exerciseId]
+    );
+
+    res.status(200).json({ message: 'Exercise saved successfully.' });
+  } catch (error) {
+    if ((error as any).code === 'SQLITE_CONSTRAINT') {
+      // Handle duplicate entries gracefully
+      return res.status(400).json({ error: 'Exercise already saved.' });
+    }
+    console.error('Error saving exercise:', error);
+    res.status(500).json({ error: 'Failed to save exercise.' });
+  }
+});
+
+app.get('/api/saved-exercises/:userId', async (req, res) => {
+  const { userId } = req.params;
+
+  try {
+    const savedExercises = await db.all(
+      `
+      SELECT e.*
+      FROM saved_exercises se
+      JOIN exercises e ON se.exercise_id = e.id
+      WHERE se.user_id = ?
+      `,
+      [userId]
+    );
+
+    res.json({ savedExercises });
+  } catch (error) {
+    console.error('Error fetching saved exercises:', error);
+    res.status(500).json({ error: 'Failed to fetch saved exercises.' });
+  }
+});
+
 
 app.post('/metrics', async (req, res) => {
   console.log('Received data:', req.body); // Log incoming data
